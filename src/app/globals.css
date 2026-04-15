@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f7fc;
+  --foreground: #1f2937;
+  --shell-bg: linear-gradient(180deg, #f5f7fc 0%, #e9eefc 100%);
+  --hero-bg:
+    radial-gradient(circle at 20% 20%, rgba(67, 56, 202, 0.16), transparent 35%),
+    radial-gradient(circle at 80% 15%, rgba(14, 165, 233, 0.2), transparent 32%),
+    linear-gradient(145deg, #17264a 0%, #0b173a 45%, #07132f 100%);
+  --header-bg: rgba(15, 30, 71, 0.85);
 }
 
 @theme inline {
@@ -14,8 +20,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #081431;
+    --foreground: #e2e8f0;
+    --shell-bg:
+      radial-gradient(circle at 70% 12%, rgba(6, 182, 212, 0.16), transparent 30%),
+      linear-gradient(160deg, #09183f 0%, #081431 45%, #030c24 100%);
+    --hero-bg:
+      radial-gradient(circle at 12% 15%, rgba(37, 99, 235, 0.2), transparent 36%),
+      radial-gradient(circle at 80% 18%, rgba(34, 211, 238, 0.18), transparent 30%),
+      linear-gradient(155deg, #071534 0%, #04102a 45%, #020a1f 100%);
+    --header-bg: rgba(3, 13, 36, 0.84);
   }
 }
 
@@ -23,4 +37,18 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-shell {
+  background: var(--shell-bg);
+}
+
+.app-header {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: var(--header-bg);
+  backdrop-filter: blur(8px);
+}
+
+.hero-home {
+  background: var(--hero-bg);
 }
