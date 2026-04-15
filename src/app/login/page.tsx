@@ -1,6 +1,13 @@
 import Link from "next/link";
 
-export default function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>;
+}) {
+  const params = await searchParams;
+  const isInvalid = params.error === "invalid";
+
   return (
     <main className="min-h-screen bg-slate-100 px-6 py-10 dark:bg-slate-900">
       <section className="mx-auto mt-8 w-full max-w-md">
@@ -11,13 +18,19 @@ export default function LoginPage() {
           Login to continue your journey
         </p>
 
-        <form action="/api/auth/login" method="get" className="mt-14 space-y-6">
+        <form action="/api/auth/login" method="post" className="mt-14 space-y-6">
+          {isInvalid ? (
+            <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+              Invalid email or password. Try again.
+            </div>
+          ) : null}
           <div>
             <label htmlFor="email" className="mb-3 block text-base font-medium text-slate-600 dark:text-slate-300">
               Email or Username
             </label>
             <input
               id="email"
+              name="email"
               type="text"
               placeholder="Enter your email or username"
               className="w-full rounded-2xl border border-slate-300 bg-transparent px-5 py-4 text-lg text-slate-800 outline-none transition focus:border-blue-500 dark:border-slate-600 dark:text-slate-100"
@@ -31,6 +44,7 @@ export default function LoginPage() {
             </label>
             <input
               id="password"
+              name="password"
               type="password"
               placeholder="Enter your password"
               className="w-full rounded-2xl border border-slate-300 bg-transparent px-5 py-4 text-lg text-slate-800 outline-none transition focus:border-blue-500 dark:border-slate-600 dark:text-slate-100"
@@ -69,6 +83,10 @@ export default function LoginPage() {
             &lsaquo; Back to Home
           </Link>
         </div>
+
+        <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
+          Demo login: <span className="font-semibold">student@example.com</span> / <span className="font-semibold">student123</span>
+        </p>
       </section>
     </main>
   );
