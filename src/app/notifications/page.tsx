@@ -1,5 +1,8 @@
 import SiteShell from "@/components/site-shell";
 import { prisma } from "@/lib/prisma";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { AUTH_COOKIE } from "@/lib/auth";
 
 type NotificationItem = {
   id: string;
@@ -24,10 +27,17 @@ async function getNotifications(): Promise<NotificationItem[]> {
 }
 
 export default async function NotificationsPage() {
+  const cookieStore = await cookies();
+  const isAuthenticated = cookieStore.get(AUTH_COOKIE)?.value === "1";
+
+  if (!isAuthenticated) {
+    redirect("/login");
+  }
+
   const notifications = await getNotifications();
 
   return (
-    <SiteShell title="Notifications" subtitle="Latest service updates and offers">
+    <SiteShell title="Notifications" subtitle="Latest service updates and offers" isAuthenticated>
       <section className="rounded-xl border border-slate-200 bg-white p-6">
         <div className="space-y-3">
           {notifications.length === 0 ? (

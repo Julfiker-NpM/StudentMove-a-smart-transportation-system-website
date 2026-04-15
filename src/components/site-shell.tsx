@@ -1,10 +1,10 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import ThemeToggle from "@/components/theme-toggle";
 
-const navItems = [
+const leftNavItems = [
   { href: "/", label: "Home" },
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/notifications", label: "Notifications" },
+  { href: "#", label: "Live Location" },
 ];
 
 export default function SiteShell({
@@ -12,11 +12,13 @@ export default function SiteShell({
   subtitle,
   children,
   showIntroCard = true,
+  isAuthenticated = false,
 }: {
   title: string;
   subtitle?: string;
   children: ReactNode;
   showIntroCard?: boolean;
+  isAuthenticated?: boolean;
 }) {
   return (
     <div className="app-shell min-h-screen">
@@ -27,7 +29,7 @@ export default function SiteShell({
             <p className="text-sm text-blue-100">Smart Transport Solution</p>
           </div>
           <nav className="flex items-center gap-2">
-            {navItems.map((item) => (
+            {leftNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -36,6 +38,52 @@ export default function SiteShell({
                 {item.label}
               </Link>
             ))}
+          </nav>
+          <nav className="flex items-center gap-2">
+            <ThemeToggle />
+            {isAuthenticated ? (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="rounded-md bg-white/10 px-3 py-2 text-sm font-medium text-blue-100 hover:bg-white/20"
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  href="/notifications"
+                  className="rounded-md bg-white/10 px-3 py-2 text-sm font-medium text-blue-100 hover:bg-white/20"
+                >
+                  Notifications
+                </Link>
+                <Link
+                  href="/api/auth/logout"
+                  className="rounded-md bg-rose-500/80 px-3 py-2 text-sm font-medium text-white hover:bg-rose-500"
+                >
+                  Logout
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+                >
+                  Sign in
+                </Link>
+                <a
+                  href="#"
+                  className="rounded-md bg-white/10 px-3 py-2 text-sm font-medium text-blue-100 hover:bg-white/20"
+                >
+                  Driver
+                </a>
+                <a
+                  href="#"
+                  className="rounded-md bg-white/10 px-3 py-2 text-sm font-medium text-blue-100 hover:bg-white/20"
+                >
+                  Admin
+                </a>
+              </>
+            )}
           </nav>
         </div>
       </header>

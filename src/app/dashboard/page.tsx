@@ -1,10 +1,20 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import SiteShell from "@/components/site-shell";
 import Dashboard from "@/components/dashboard";
+import { AUTH_COOKIE } from "@/lib/auth";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const cookieStore = await cookies();
+  const isAuthenticated = cookieStore.get(AUTH_COOKIE)?.value === "1";
+
+  if (!isAuthenticated) {
+    redirect("/login");
+  }
+
   return (
-    <SiteShell title="Welcome back, Student!" subtitle="What do you want to do today?">
+    <SiteShell title="Welcome back, Student!" subtitle="What do you want to do today?" isAuthenticated>
       <section className="mb-6 grid gap-4 md:grid-cols-3">
         <article className="rounded-xl border border-blue-200 bg-blue-50 p-5">
           <h3 className="text-lg font-semibold text-blue-900">Next Bus Arrival</h3>

@@ -18,19 +18,17 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #081431;
-    --foreground: #e2e8f0;
-    --shell-bg:
-      radial-gradient(circle at 70% 12%, rgba(6, 182, 212, 0.16), transparent 30%),
-      linear-gradient(160deg, #09183f 0%, #081431 45%, #030c24 100%);
-    --hero-bg:
-      radial-gradient(circle at 12% 15%, rgba(37, 99, 235, 0.2), transparent 36%),
-      radial-gradient(circle at 80% 18%, rgba(34, 211, 238, 0.18), transparent 30%),
-      linear-gradient(155deg, #071534 0%, #04102a 45%, #020a1f 100%);
-    --header-bg: rgba(3, 13, 36, 0.84);
-  }
+html.dark {
+  --background: #081431;
+  --foreground: #e2e8f0;
+  --shell-bg:
+    radial-gradient(circle at 70% 12%, rgba(6, 182, 212, 0.16), transparent 30%),
+    linear-gradient(160deg, #09183f 0%, #081431 45%, #030c24 100%);
+  --hero-bg:
+    radial-gradient(circle at 12% 15%, rgba(37, 99, 235, 0.2), transparent 36%),
+    radial-gradient(circle at 80% 18%, rgba(34, 211, 238, 0.18), transparent 30%),
+    linear-gradient(155deg, #071534 0%, #04102a 45%, #020a1f 100%);
+  --header-bg: rgba(3, 13, 36, 0.84);
 }
 
 body {
