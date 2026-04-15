@@ -1,71 +1,31 @@
 import Link from "next/link";
-import Dashboard from "@/components/dashboard";
+import SiteShell from "@/components/site-shell";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <main className="mx-auto w-full max-w-6xl px-6 py-10">
-        <header className="mb-6 rounded-xl border border-slate-200 bg-white p-6">
-          <h1 className="text-2xl font-bold text-slate-900">
-            StudentMove - Full Stack (Next.js + TypeScript + Prisma)
-          </h1>
-          <p className="mt-2 text-sm text-slate-600">
-            Frontend and backend are both running in Next.js. Data layer uses PostgreSQL with Prisma.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2 text-sm">
-            {["Auth", "Routes", "Subscriptions", "Notifications", "Feedback", "Admin", "Driver"].map((item) => (
-              <span key={item} className="rounded-full border border-slate-300 bg-slate-100 px-3 py-1">
-                {item}
-              </span>
-            ))}
-          </div>
-        </header>
-
-        <section className="mb-6 grid gap-4 md:grid-cols-2">
-          <article className="rounded-xl border border-slate-200 bg-white p-5">
-            <h2 className="font-semibold text-slate-900">API Endpoints</h2>
-            <ul className="mt-3 space-y-1 text-sm text-slate-700">
-              <li>
-                <code>GET /api/health</code>
-              </li>
-              <li>
-                <code>GET|POST /api/route-suggestions</code>
-              </li>
-              <li>
-                <code>GET|POST /api/subscriptions</code>
-              </li>
-              <li>
-                <code>GET /api/notifications</code>
-              </li>
-              <li>
-                <code>GET|POST /api/feedback</code>
-              </li>
-            </ul>
-          </article>
-
-          <article className="rounded-xl border border-slate-200 bg-white p-5">
-            <h2 className="font-semibold text-slate-900">Quick Actions</h2>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <Link
-                href="https://vercel.com/new"
-                target="_blank"
-                className="rounded-lg bg-black px-4 py-2 text-sm text-white"
-              >
-                Deploy to Vercel
-              </Link>
-              <Link
-                href="https://www.prisma.io/docs/guides/deployment/deploying-to-vercel"
-                target="_blank"
-                className="rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-800"
-              >
-                Prisma + Vercel Guide
-              </Link>
-            </div>
-          </article>
-        </section>
-
-        <Dashboard />
-      </main>
-    </div>
+    <SiteShell
+      title="Welcome to StudentMove"
+      subtitle="Smart Transport Solution for Dhaka City Students"
+    >
+      <section className="rounded-xl border border-slate-200 bg-white p-8 text-center">
+        <p className="mb-6 text-slate-600">
+          Use the quick links below to access your dashboard, notifications, and route services.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <Link href="/dashboard" className="rounded-lg bg-blue-600 px-5 py-2.5 font-medium text-white hover:bg-blue-700">
+            Go to Dashboard
+          </Link>
+          <a href="#" className="rounded-lg bg-gray-200 px-5 py-2.5 font-medium text-gray-800 hover:bg-gray-300">
+            Register
+          </a>
+          <a href="#" className="rounded-lg bg-amber-500 px-5 py-2.5 font-medium text-white hover:bg-amber-600">
+            Driver Login
+          </a>
+          <a href="#" className="rounded-lg bg-purple-600 px-5 py-2.5 font-medium text-white hover:bg-purple-700">
+            Admin Login
+          </a>
+        </div>
+      </section>
+    </SiteShell>
   );
 }
