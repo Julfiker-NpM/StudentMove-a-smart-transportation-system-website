@@ -29,9 +29,24 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="rounded-md bg-white/10 px-3 py-2 text-sm font-medium text-blue-100 hover:bg-white/20"
+      aria-label={theme === "dark" ? "Switch to day mode" : "Switch to night mode"}
+      title={theme === "dark" ? "Switch to day mode" : "Switch to night mode"}
+      className={`relative flex h-11 w-36 items-center rounded-full border px-2 transition ${
+        theme === "dark"
+          ? "border-slate-700 bg-black text-white"
+          : "border-slate-300 bg-slate-200 text-slate-800"
+      }`}
     >
-      {theme === "dark" ? "Day Mode" : "Dark Mode"}
+      <span
+        className={`pointer-events-none absolute top-1 flex h-8 w-8 items-center justify-center rounded-full text-base transition ${
+          theme === "dark" ? "right-1 bg-white text-slate-900" : "left-1 bg-white text-slate-800"
+        }`}
+      >
+        {theme === "dark" ? "☾" : "☀"}
+      </span>
+      <span className={`w-full text-center text-xs font-semibold tracking-[0.2em] ${theme === "dark" ? "pr-7" : "pl-7"}`}>
+        {theme === "dark" ? "NIGHT MODE" : "DAY MODE"}
+      </span>
     </button>
   );
 }
