@@ -1,6 +1,5 @@
 import Link from "next/link";
 import SiteShell from "@/components/site-shell";
-import { requireAuth } from "@/lib/require-auth";
 
 const routes = [
   { rank: 1, path: "Uttara → Airport → Banani → Dhanmondi", duration: "42 min" },
@@ -9,10 +8,8 @@ const routes = [
 ];
 
 export default async function RouteSuggestionPage() {
-  await requireAuth();
-
   return (
-    <SiteShell title="Personalized Route Suggestion" subtitle="Top ranked route options" isAuthenticated>
+    <SiteShell title="Personalized Route Suggestion" subtitle="Top ranked route options" isAuthenticated={false}>
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900/40">
         <div className="space-y-3">
           {routes.map((item) => (

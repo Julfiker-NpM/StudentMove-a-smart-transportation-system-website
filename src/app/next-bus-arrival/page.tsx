@@ -1,6 +1,5 @@
 import Link from "next/link";
 import SiteShell from "@/components/site-shell";
-import { requireAuth } from "@/lib/require-auth";
 
 const arrivals = [
   { route: "Uttara → Dhanmondi", eta: "6 min", status: "On Time" },
@@ -9,10 +8,8 @@ const arrivals = [
 ];
 
 export default async function NextBusArrivalPage() {
-  await requireAuth();
-
   return (
-    <SiteShell title="Next Bus Arrival" subtitle="Upcoming buses and ETA" isAuthenticated>
+    <SiteShell title="Next Bus Arrival" subtitle="Upcoming buses and ETA" isAuthenticated={false}>
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900/40">
         <div className="space-y-3">
           {arrivals.map((item) => (

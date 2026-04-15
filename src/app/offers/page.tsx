@@ -1,11 +1,8 @@
 import Link from "next/link";
 import SiteShell from "@/components/site-shell";
-import { requireAuth } from "@/lib/require-auth";
 import { prisma } from "@/lib/prisma";
 
 export default async function OffersPage() {
-  await requireAuth();
-
   const offers = await prisma.notification.findMany({
     where: { active: true },
     select: { id: true, title: true, message: true, createdAt: true },
@@ -14,7 +11,7 @@ export default async function OffersPage() {
   });
 
   return (
-    <SiteShell title="Offers" subtitle="Current promotions for students" isAuthenticated>
+    <SiteShell title="Offers" subtitle="Current promotions for students" isAuthenticated={false}>
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900/40">
         <div className="space-y-3">
           {offers.length === 0 ? (
