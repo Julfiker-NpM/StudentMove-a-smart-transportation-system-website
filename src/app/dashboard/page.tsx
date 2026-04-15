@@ -1,17 +1,10 @@
 import Link from "next/link";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import SiteShell from "@/components/site-shell";
 import Dashboard from "@/components/dashboard";
-import { AUTH_COOKIE } from "@/lib/auth";
+import { requireAuth } from "@/lib/require-auth";
 
 export default async function DashboardPage() {
-  const cookieStore = await cookies();
-  const isAuthenticated = cookieStore.get(AUTH_COOKIE)?.value === "1";
-
-  if (!isAuthenticated) {
-    redirect("/login");
-  }
+  await requireAuth();
 
   return (
     <SiteShell title="Welcome back, Student!" subtitle="What do you want to do today?" isAuthenticated>
@@ -19,7 +12,7 @@ export default async function DashboardPage() {
         <article className="rounded-xl border border-blue-200 bg-blue-50 p-5">
           <h3 className="text-lg font-semibold text-blue-900">Next Bus Arrival</h3>
           <p className="mt-2 text-sm text-blue-700">Check upcoming bus arrivals in real-time.</p>
-          <Link href="#" className="mt-4 inline-block font-medium text-blue-700">
+          <Link href="/next-bus-arrival" className="mt-4 inline-block font-medium text-blue-700">
             Open →
           </Link>
         </article>
@@ -27,7 +20,7 @@ export default async function DashboardPage() {
         <article className="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
           <h3 className="text-lg font-semibold text-emerald-900">Personalized Route Suggestion</h3>
           <p className="mt-2 text-sm text-emerald-700">Get ranked route options for your trip.</p>
-          <Link href="#" className="mt-4 inline-block font-medium text-emerald-700">
+          <Link href="/route-suggestion" className="mt-4 inline-block font-medium text-emerald-700">
             Open →
           </Link>
         </article>
@@ -42,7 +35,7 @@ export default async function DashboardPage() {
       <section className="mb-6 rounded-xl border border-indigo-200 bg-gradient-to-r from-indigo-500 to-sky-500 p-6 text-white">
         <h3 className="text-xl font-semibold">Save on Student Pass</h3>
         <p className="mt-2 text-sm text-indigo-100">Flat daily rates for city routes. Best for regular commuters.</p>
-        <Link href="#" className="mt-4 inline-block rounded-lg bg-white px-4 py-2 font-medium text-indigo-700">
+        <Link href="/offers" className="mt-4 inline-block rounded-lg bg-white px-4 py-2 font-medium text-indigo-700">
           Get Pass
         </Link>
       </section>

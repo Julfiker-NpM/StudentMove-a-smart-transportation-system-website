@@ -4,7 +4,7 @@ import ThemeToggle from "@/components/theme-toggle";
 
 const leftNavItems = [
   { href: "/", label: "Home" },
-  { href: "#", label: "Live Location" },
+  { href: "/next-bus-arrival", label: "Live Location" },
 ];
 
 export default function SiteShell({
