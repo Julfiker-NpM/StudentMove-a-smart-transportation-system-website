@@ -25,8 +25,8 @@ export default async function NextBusArrivalPage() {
             </article>
           ))}
         </div>
-        <Link href="/dashboard" className="mt-5 inline-block text-sm font-medium text-blue-600 hover:underline">
-          ← Back to Dashboard
+        <Link href="/" className="mt-5 inline-block text-sm font-medium text-blue-600 hover:underline">
+          ← Back to Home
         </Link>
       </section>
     </SiteShell>
