@@ -41,7 +41,7 @@ export default function Home() {
         </article>
       </section>
 
-      <section className="mt-8 sm-card p-6">
+      <section id="features" className="mt-8 sm-card p-6">
         <h3 className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>Core Features</h3>
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <article className="rounded-xl border border-slate-200 p-4">
@@ -96,14 +96,14 @@ export default function Home() {
       </section>
 
       <section className="mt-8 grid gap-4 md:grid-cols-2">
-        <article className="sm-card p-6">
+        <article id="testimonials" className="sm-card p-6">
           <h3 className="text-xl font-semibold" style={{ color: "var(--text-primary)" }}>What Students Say</h3>
           <blockquote className="mt-3 text-sm" style={{ color: "var(--text-secondary)" }}>
             “StudentMove makes commuting easier. I always know where my bus is and when it will arrive.”
           </blockquote>
           <p className="mt-2 text-sm font-medium">Md Julfikar Hasan, Dhaka University</p>
         </article>
-        <article className="sm-card p-6">
+        <article id="contact" className="sm-card p-6">
           <h3 className="text-xl font-semibold" style={{ color: "var(--text-primary)" }}>Contact</h3>
           <p className="mt-2 text-sm" style={{ color: "var(--text-secondary)" }}>
             Email: studentmove.dhaka@gmail.com

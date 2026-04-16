@@ -4,6 +4,9 @@ import ThemeToggle from "@/components/theme-toggle";
 
 const leftNavItems = [
   { href: "/", label: "Home" },
+  { href: "/#features", label: "Features" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/#contact", label: "Contact" },
   { href: "/next-bus-arrival", label: "Live Location" },
 ];
 
