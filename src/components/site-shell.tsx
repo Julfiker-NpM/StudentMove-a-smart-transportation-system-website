@@ -71,13 +71,13 @@ export default function SiteShell({
                   Sign in
                 </Link>
                 <a
-                  href="#"
+                  href="/driver/login"
                   className="rounded-md bg-white/10 px-3 py-2 text-sm font-medium text-blue-100 hover:bg-white/20"
                 >
                   Driver
                 </a>
                 <a
-                  href="#"
+                  href="/admin/login"
                   className="rounded-md bg-white/10 px-3 py-2 text-sm font-medium text-blue-100 hover:bg-white/20"
                 >
                   Admin

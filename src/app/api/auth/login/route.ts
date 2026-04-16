@@ -1,24 +1,37 @@
 import { NextResponse } from "next/server";
-import { AUTH_COOKIE } from "@/lib/auth";
+import bcrypt from "bcryptjs";
+import { prisma } from "@/lib/prisma";
+import { AUTH_COOKIE, AUTH_MAX_AGE_SECONDS } from "@/lib/auth";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const password = String(formData.get("password") ?? "");
 
-  const expectedEmail = (process.env.DEMO_LOGIN_EMAIL ?? "student@example.com").toLowerCase();
-  const expectedPassword = process.env.DEMO_LOGIN_PASSWORD ?? "student123";
+  if (!email || !password) {
+    return NextResponse.redirect(new URL("/login?error=invalid", request.url));
+  }
 
-  if (!email || !password || email !== expectedEmail || password !== expectedPassword) {
+  const user = await prisma.user.findUnique({
+    where: { email },
+    select: { id: true, passwordHash: true },
+  });
+
+  if (!user) {
+    return NextResponse.redirect(new URL("/login?error=invalid", request.url));
+  }
+
+  const isValidPassword = await bcrypt.compare(password, user.passwordHash);
+  if (!isValidPassword) {
     return NextResponse.redirect(new URL("/login?error=invalid", request.url));
   }
 
   const response = NextResponse.redirect(new URL("/dashboard", request.url));
-  response.cookies.set(AUTH_COOKIE, "1", {
+  response.cookies.set(AUTH_COOKIE, user.id, {
     httpOnly: true,
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: AUTH_MAX_AGE_SECONDS,
   });
   return response;
 }

@@ -51,9 +51,9 @@ export default async function LoginPage({
               required
             />
             <div className="mt-3 text-right">
-              <a href="#" className="text-base text-blue-600 hover:underline">
+              <Link href="/forgot-password" className="text-base text-blue-600 hover:underline">
                 Forgot Password?
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -84,9 +84,6 @@ export default async function LoginPage({
           </Link>
         </div>
 
-        <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
-          Demo login: <span className="font-semibold">student@example.com</span> / <span className="font-semibold">student123</span>
-        </p>
       </section>
     </main>
   );
