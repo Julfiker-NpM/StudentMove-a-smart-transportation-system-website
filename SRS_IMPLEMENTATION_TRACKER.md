@@ -7,10 +7,10 @@ This tracker maps current implementation status against core SRS functional requ
 - [x] FR-1 basic user signup (name, email, password)
 - [x] FR-4 login with email/password
 - [x] FR-5 forgot password page scaffold
+- [x] FR-6 profile page and profile API scaffold
 - [x] FR-7 password hashing (bcrypt)
-- [ ] FR-2 student ID + university validation
+- [x] FR-2 student ID + university validation at signup
 - [ ] FR-3 email verification/OTP
-- [ ] FR-6 full profile management
 - [ ] FR-8 session timeout/token policy
 
 ## Route Planning & Tracking
@@ -41,15 +41,15 @@ This tracker maps current implementation status against core SRS functional requ
 - [x] FR-29 notifications list page
 - [ ] FR-26 real-time delay notification pipeline
 - [ ] FR-27 push + email delivery integration
-- [ ] FR-28 user notification preference controls
+- [x] FR-28 notification preference API + settings page scaffold
 - [ ] FR-30 30-day retention policy enforcement
 - [ ] FR-31 admin bulk announcements
 
 ## Feedback & Support
 
 - [x] FR-32 feedback endpoint and page path
+- [x] FR-34 admin response endpoint scaffold
 - [ ] FR-33 confirmation email on feedback
-- [ ] FR-34 admin response + resolve workflow
 - [ ] FR-35 auto archive at 60 days
 
 ## Admin & Driver

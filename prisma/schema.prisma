@@ -8,15 +8,23 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(cuid())
-  name          String
-  email         String         @unique
-  passwordHash  String         @default("")
-  role          UserRole       @default(STUDENT)
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  subscriptions Subscription[]
-  feedbacks     Feedback[]
+  id                 String         @id @default(cuid())
+  name               String
+  email              String         @unique
+  phone              String         @default("")
+  studentId          String         @default("") @unique
+  university         String         @default("")
+  passwordHash       String         @default("")
+  emailVerified      Boolean        @default(false)
+  preferredLanguage  String         @default("en")
+  notifyDelay        Boolean        @default(true)
+  notifyOffer        Boolean        @default(true)
+  notifySystem       Boolean        @default(true)
+  role               UserRole       @default(STUDENT)
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  subscriptions      Subscription[]
+  feedbacks          Feedback[]
 }
 
 model RouteSuggestion {
@@ -49,12 +57,15 @@ model Notification {
 }
 
 model Feedback {
-  id        String   @id @default(cuid())
-  userId    String
-  subject   String
-  comment   String
-  createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id         String         @id @default(cuid())
+  userId     String
+  category   FeedbackCategory @default(SUGGESTION)
+  subject    String
+  comment    String
+  status     FeedbackStatus @default(OPEN)
+  adminReply String?
+  createdAt  DateTime       @default(now())
+  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum UserRole {
@@ -73,4 +84,15 @@ enum SubscriptionStatus {
   PENDING
   ACTIVE
   CANCELLED
+}
+
+enum FeedbackCategory {
+  BUG
+  SUGGESTION
+  COMPLAINT
+}
+
+enum FeedbackStatus {
+  OPEN
+  RESOLVED
 }

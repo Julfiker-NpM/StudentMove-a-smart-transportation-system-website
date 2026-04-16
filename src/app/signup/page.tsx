@@ -3,10 +3,10 @@ import Link from "next/link";
 export default async function SignupPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ error?: "invalid" | "exists" | "studentid" }>;
 }) {
   const params = await searchParams;
-  const hasError = params.error === "invalid";
+  const error = params.error;
 
   return (
     <main className="min-h-screen bg-slate-100 px-6 py-12 dark:bg-slate-900">
@@ -19,9 +19,13 @@ export default async function SignupPage({
         </p>
 
         <form action="/api/auth/signup" method="post" className="mt-10 space-y-5">
-          {hasError ? (
+          {error ? (
             <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-              Please fill all required fields.
+              {error === "invalid"
+                ? "Please fill all required fields correctly."
+                : error === "exists"
+                  ? "Email is already registered."
+                  : "Student ID already exists."}
             </div>
           ) : null}
           <div>
@@ -47,6 +51,48 @@ export default async function SignupPage({
               name="email"
               type="email"
               placeholder="Enter your email"
+              className="w-full rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-base text-slate-800 outline-none transition focus:border-blue-500 dark:border-slate-600 dark:text-slate-100"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="phone" className="mb-2 block text-sm font-medium text-slate-600 dark:text-slate-300">
+              Phone Number
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="text"
+              placeholder="01XXXXXXXXX"
+              className="w-full rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-base text-slate-800 outline-none transition focus:border-blue-500 dark:border-slate-600 dark:text-slate-100"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="studentId" className="mb-2 block text-sm font-medium text-slate-600 dark:text-slate-300">
+              Student ID
+            </label>
+            <input
+              id="studentId"
+              name="studentId"
+              type="text"
+              placeholder="16-digit student ID"
+              className="w-full rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-base text-slate-800 outline-none transition focus:border-blue-500 dark:border-slate-600 dark:text-slate-100"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="university" className="mb-2 block text-sm font-medium text-slate-600 dark:text-slate-300">
+              University Name
+            </label>
+            <input
+              id="university"
+              name="university"
+              type="text"
+              placeholder="Your university"
               className="w-full rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-base text-slate-800 outline-none transition focus:border-blue-500 dark:border-slate-600 dark:text-slate-100"
               required
             />

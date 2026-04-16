@@ -15,6 +15,23 @@ export const subscriptionSchema = z.object({
 
 export const feedbackSchema = z.object({
   userId: z.string().min(1),
+  category: z.enum(["BUG", "SUGGESTION", "COMPLAINT"]).default("SUGGESTION"),
   subject: z.string().min(3),
   comment: z.string().min(5),
+});
+
+export const signupSchema = z.object({
+  name: z.string().min(2),
+  email: z.email(),
+  phone: z.string().min(11).max(15),
+  studentId: z.string().regex(/^\d{16}$/, "Student ID must be 16 digits"),
+  university: z.string().min(3),
+  password: z.string().min(6),
+});
+
+export const notificationSettingsSchema = z.object({
+  notifyDelay: z.boolean(),
+  notifyOffer: z.boolean(),
+  notifySystem: z.boolean(),
+  preferredLanguage: z.enum(["en", "bn"]),
 });

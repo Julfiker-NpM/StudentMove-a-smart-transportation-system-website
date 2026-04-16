@@ -2,20 +2,34 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { AUTH_COOKIE, AUTH_MAX_AGE_SECONDS } from "@/lib/auth";
+import { signupSchema } from "@/lib/validators";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const name = String(formData.get("name") ?? "").trim();
-  const email = String(formData.get("email") ?? "").trim().toLowerCase();
-  const password = String(formData.get("password") ?? "").trim();
-
-  if (!name || !email || !password) {
+  const payload = {
+    name: String(formData.get("name") ?? "").trim(),
+    email: String(formData.get("email") ?? "").trim().toLowerCase(),
+    phone: String(formData.get("phone") ?? "").trim(),
+    studentId: String(formData.get("studentId") ?? "").trim(),
+    university: String(formData.get("university") ?? "").trim(),
+    password: String(formData.get("password") ?? "").trim(),
+  };
+  const parsed = signupSchema.safeParse(payload);
+  if (!parsed.success) {
     return NextResponse.redirect(new URL("/signup?error=invalid", request.url), 303);
   }
+  const { name, email, phone, studentId, university, password } = parsed.data;
 
-  const existing = await prisma.user.findUnique({ where: { email } });
-  if (existing) {
+  const existing = await prisma.user.findFirst({
+    where: {
+      OR: [{ email }, { studentId }],
+    },
+  });
+  if (existing?.email === email) {
     return NextResponse.redirect(new URL("/signup?error=exists", request.url), 303);
+  }
+  if (existing?.studentId === studentId) {
+    return NextResponse.redirect(new URL("/signup?error=studentid", request.url), 303);
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
@@ -23,8 +37,12 @@ export async function POST(request: Request) {
     data: {
       name,
       email,
+      phone,
+      studentId,
+      university,
       passwordHash,
       role: "STUDENT",
+      emailVerified: false,
     },
   });
 

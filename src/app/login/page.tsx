@@ -77,6 +77,9 @@ export default async function LoginPage({
             Sign Up
           </Link>
         </p>
+        <p className="mt-2 text-center text-sm text-slate-400">
+          Accounts require university info + student ID during signup.
+        </p>
 
       </section>
     </main>
