@@ -1,4 +1,3 @@
-import Link from "next/link";
 import SiteShell from "@/components/site-shell";
 
 const routes = [
@@ -27,9 +26,6 @@ export default async function RouteSuggestionPage() {
             </article>
           ))}
         </div>
-        <Link href="/" className="mt-5 inline-block text-sm font-medium text-blue-600 hover:underline">
-          ← Back to Home
-        </Link>
       </section>
     </SiteShell>
   );

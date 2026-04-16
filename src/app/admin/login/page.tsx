@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function AdminLoginPage() {
   return (
     <main className="min-h-screen bg-slate-100 px-6 py-10 dark:bg-slate-900">
@@ -10,11 +8,6 @@ export default function AdminLoginPage() {
         </p>
         <div className="mt-8 rounded-xl border border-purple-200 bg-purple-50 p-4 text-sm text-purple-700 dark:border-purple-700/40 dark:bg-purple-700/10 dark:text-purple-300">
           Admin authentication flow will be integrated in the next backend milestone.
-        </div>
-        <div className="mt-8 text-center">
-          <Link href="/" className="text-slate-500 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-100">
-            &lsaquo; Back to Home
-          </Link>
         </div>
       </section>
     </main>

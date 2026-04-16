@@ -81,11 +81,6 @@ export default async function SignupPage({
           </Link>
         </p>
 
-        <div className="mt-10 text-center">
-          <Link href="/" className="text-2xl text-slate-500 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-100">
-            &lsaquo; Back to Home
-          </Link>
-        </div>
       </section>
     </main>
   );
