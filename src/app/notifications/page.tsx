@@ -1,6 +1,5 @@
 import SiteShell from "@/components/site-shell";
 import { prisma } from "@/lib/prisma";
-import { requireAuth } from "@/lib/require-auth";
 
 type NotificationItem = {
   id: string;
@@ -25,12 +24,10 @@ async function getNotifications(): Promise<NotificationItem[]> {
 }
 
 export default async function NotificationsPage() {
-  await requireAuth();
-
   const notifications = await getNotifications();
 
   return (
-    <SiteShell title="Notifications" subtitle="Latest service updates and offers" isAuthenticated>
+    <SiteShell title="Notifications" subtitle="Latest service updates and offers" isAuthenticated={false}>
       <section className="rounded-xl border border-slate-200 bg-white p-6">
         <div className="space-y-3">
           {notifications.length === 0 ? (

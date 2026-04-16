@@ -1,13 +1,10 @@
 import Link from "next/link";
 import SiteShell from "@/components/site-shell";
 import Dashboard from "@/components/dashboard";
-import { requireAuth } from "@/lib/require-auth";
 
 export default async function DashboardPage() {
-  await requireAuth();
-
   return (
-    <SiteShell title="Welcome back, Student!" subtitle="What do you want to do today?" isAuthenticated>
+    <SiteShell title="Welcome back, Student!" subtitle="What do you want to do today?" isAuthenticated={false}>
       <section className="mb-6 grid gap-4 md:grid-cols-3">
         <article className="rounded-xl border border-blue-200 bg-blue-50 p-5">
           <h3 className="text-lg font-semibold text-blue-900">Next Bus Arrival</h3>
