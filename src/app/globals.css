@@ -1,14 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f7fc;
-  --foreground: #1f2937;
-  --shell-bg: linear-gradient(180deg, #f5f7fc 0%, #e9eefc 100%);
+  --primary: #1a73e8;
+  --light-bg: #f9fafb;
+  --card-bg: #ffffff;
+  --text-primary: #1f1f1f;
+  --text-secondary: #6b7280;
+  --accent-success: #22c55e;
+
+  --background: var(--light-bg);
+  --foreground: var(--text-primary);
+  --shell-bg: linear-gradient(180deg, #f9fafb 0%, #eef4ff 100%);
   --hero-bg:
-    radial-gradient(circle at 20% 20%, rgba(67, 56, 202, 0.16), transparent 35%),
-    radial-gradient(circle at 80% 15%, rgba(14, 165, 233, 0.2), transparent 32%),
-    linear-gradient(145deg, #17264a 0%, #0b173a 45%, #07132f 100%);
-  --header-bg: rgba(15, 30, 71, 0.85);
+    radial-gradient(circle at 18% 18%, rgba(26, 115, 232, 0.2), transparent 38%),
+    radial-gradient(circle at 82% 16%, rgba(26, 115, 232, 0.28), transparent 34%),
+    linear-gradient(145deg, #10284f 0%, #0d2245 45%, #081a38 100%);
+  --header-bg: rgba(11, 33, 68, 0.9);
 }
 
 @theme inline {
@@ -19,22 +26,33 @@
 }
 
 html.dark {
-  --background: #081431;
-  --foreground: #e2e8f0;
+  --background: #081a38;
+  --foreground: #f4f7ff;
   --shell-bg:
-    radial-gradient(circle at 70% 12%, rgba(6, 182, 212, 0.16), transparent 30%),
-    linear-gradient(160deg, #09183f 0%, #081431 45%, #030c24 100%);
+    radial-gradient(circle at 70% 12%, rgba(26, 115, 232, 0.18), transparent 30%),
+    linear-gradient(160deg, #0b2045 0%, #081a38 45%, #06132a 100%);
   --hero-bg:
-    radial-gradient(circle at 12% 15%, rgba(37, 99, 235, 0.2), transparent 36%),
-    radial-gradient(circle at 80% 18%, rgba(34, 211, 238, 0.18), transparent 30%),
-    linear-gradient(155deg, #071534 0%, #04102a 45%, #020a1f 100%);
-  --header-bg: rgba(3, 13, 36, 0.84);
+    radial-gradient(circle at 12% 15%, rgba(26, 115, 232, 0.26), transparent 36%),
+    radial-gradient(circle at 80% 18%, rgba(26, 115, 232, 0.2), transparent 30%),
+    linear-gradient(155deg, #081a38 0%, #071734 45%, #051125 100%);
+  --header-bg: rgba(7, 21, 45, 0.9);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.sm-card {
+  background: var(--card-bg);
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.sm-primary-btn {
+  background: var(--primary);
+  color: #fff;
 }
 
 .app-shell {

@@ -57,7 +57,7 @@ export default function SiteShell({
                 </Link>
                 <Link
                   href="/api/auth/logout"
-                  className="rounded-md bg-rose-500/80 px-3 py-2 text-sm font-medium text-white hover:bg-rose-500"
+                  className="rounded-md bg-white/15 px-3 py-2 text-sm font-medium text-white hover:bg-white/25"
                 >
                   Logout
                 </Link>
@@ -92,7 +92,7 @@ export default function SiteShell({
         {showIntroCard ? (
           <section className="mb-6 rounded-xl border border-blue-200/30 bg-white/95 p-6 shadow-sm dark:bg-slate-900/50">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{title}</h2>
-            {subtitle ? <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{subtitle}</p> : null}
+            {subtitle ? <p className="mt-1 text-sm text-slate-500 dark:text-slate-300">{subtitle}</p> : null}
           </section>
         ) : null}
         {children}
