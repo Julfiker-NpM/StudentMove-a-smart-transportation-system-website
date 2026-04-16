@@ -9,7 +9,7 @@ export async function POST(request: Request) {
   const password = String(formData.get("password") ?? "");
 
   if (!email || !password) {
-    return NextResponse.redirect(new URL("/login?error=invalid", request.url));
+    return NextResponse.redirect(new URL("/login?error=invalid", request.url), 303);
   }
 
   const user = await prisma.user.findUnique({
@@ -18,15 +18,15 @@ export async function POST(request: Request) {
   });
 
   if (!user) {
-    return NextResponse.redirect(new URL("/login?error=invalid", request.url));
+    return NextResponse.redirect(new URL("/login?error=invalid", request.url), 303);
   }
 
   const isValidPassword = await bcrypt.compare(password, user.passwordHash);
   if (!isValidPassword) {
-    return NextResponse.redirect(new URL("/login?error=invalid", request.url));
+    return NextResponse.redirect(new URL("/login?error=invalid", request.url), 303);
   }
 
-  const response = NextResponse.redirect(new URL("/dashboard", request.url));
+  const response = NextResponse.redirect(new URL("/dashboard", request.url), 303);
   response.cookies.set(AUTH_COOKIE, user.id, {
     httpOnly: true,
     sameSite: "lax",

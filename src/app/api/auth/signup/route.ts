@@ -10,12 +10,12 @@ export async function POST(request: Request) {
   const password = String(formData.get("password") ?? "").trim();
 
   if (!name || !email || !password) {
-    return NextResponse.redirect(new URL("/signup?error=invalid", request.url));
+    return NextResponse.redirect(new URL("/signup?error=invalid", request.url), 303);
   }
 
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {
-    return NextResponse.redirect(new URL("/signup?error=exists", request.url));
+    return NextResponse.redirect(new URL("/signup?error=exists", request.url), 303);
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     },
   });
 
-  const response = NextResponse.redirect(new URL("/dashboard", request.url));
+  const response = NextResponse.redirect(new URL("/dashboard", request.url), 303);
   response.cookies.set(AUTH_COOKIE, createdUser.id, {
     httpOnly: true,
     sameSite: "lax",
